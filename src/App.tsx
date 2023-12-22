@@ -12,7 +12,7 @@ import Inbox from './pages/inbox';
 import Labels from './pages/labels';
 import Folder from './pages/folder';
 
-import Topbar from './pages/global/Topbar';
+// import Topbar from './pages/global/Topbar';
 
 // import ContainedButtons from './components/containedButtons';
 // const user = {
@@ -32,7 +32,8 @@ function App() {
         <Sidebar_ />
 
         <main className='content'>
-          <Topbar title={Title}/>
+          {/* <Topbar title={Title}/> */}
+          {Title}
           
           <Routes>
             <Route path='/' element={ <Home setTitle={setTitle} /> } />
