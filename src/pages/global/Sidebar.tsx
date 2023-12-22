@@ -1,8 +1,8 @@
 import './Sidebar.css'
-import { useState } from "react";
+// import { useState } from "react";
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+// import { Box, IconButton, Typography, useTheme } from "@mui/material";
 
 //Importing Icons
 import { GridViewRounded, Mail, Folder, Label, Sort } from '@mui/icons-material';

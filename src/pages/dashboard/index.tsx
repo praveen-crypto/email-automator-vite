@@ -1,6 +1,6 @@
 
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     props.setTitle("Dashboard")
     
     return <div>Dashboard</div>

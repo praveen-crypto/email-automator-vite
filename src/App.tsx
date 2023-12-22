@@ -5,8 +5,6 @@ import { Routes, Route } from 'react-router-dom';
 import Topbar from './pages/global/Topbar';
 import Sidebar_ from './pages/global/Sidebar';
 
-import ContainedButtons from './components/containedButtons';
-
 import Home from './pages/home';
 
 import SortRules from './pages/SortRules';
@@ -14,14 +12,15 @@ import Inbox from './pages/inbox';
 import Labels from './pages/labels';
 import Folder from './pages/folder';
 
-const user = {
-  name: 'Hedy Lamarr',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
-  imageSize: 90,
-};
+// import ContainedButtons from './components/containedButtons';
+// const user = {
+//   name: 'Hedy Lamarr',
+//   imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+//   imageSize: 90,
+// };
 
 function App() {
-  const [isSidebar, setIsSidebar] = useState(true);
+  // const [isSidebar, setIsSidebar] = useState(true);
   
   const [Title, setTitle] = useState("Dashboard");
   
