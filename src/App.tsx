@@ -14,6 +14,7 @@ import ContainedButtons from './components/containedButtons';
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 
 import { Link } from 'react-router-dom';
+import React from 'react';
 
 const user = {
   name: 'Hedy Lamarr',
