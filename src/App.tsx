@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Topbar from './pages/global/Topbar';
+
 import Sidebar_ from './pages/global/Sidebar';
 
 import Home from './pages/home';
@@ -11,6 +11,8 @@ import SortRules from './pages/SortRules';
 import Inbox from './pages/inbox';
 import Labels from './pages/labels';
 import Folder from './pages/folder';
+
+import Topbar from './pages/global/Topbar';
 
 // import ContainedButtons from './components/containedButtons';
 // const user = {
