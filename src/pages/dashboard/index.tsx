@@ -1,6 +1,8 @@
-import React from "react";
+
 
 const Dashboard = () => {
+    props.setTitle("Dashboard")
+    
     return <div>Dashboard</div>
 }
 
