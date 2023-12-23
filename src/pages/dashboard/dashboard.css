@@ -1,6 +1,11 @@
 
 
-.dashboard{
+.dashboard {
     padding: 2rem 2rem;
 }
 
+.labelDetailContainer {
+    display: flex;
+    
+    justify-content: space-between;
+}
