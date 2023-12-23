@@ -1,11 +1,11 @@
-import './App.css';
+ import './App.css';
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 
 import Sidebar_ from './pages/global/Sidebar';
 
-import Home from './pages/home';
+import Dashboard from './pages/dashboard/index';
 
 import SortRules from './pages/SortRules';
 import Inbox from './pages/inbox';
@@ -36,7 +36,7 @@ function App() {
           {Title}
           
           <Routes>
-            <Route path='/' element={ <Home setTitle={setTitle} /> } />
+            <Route path='/' element={ <Dashboard setTitle={setTitle} /> } />
             <Route path='/inbox' element={ <Inbox setTitle={setTitle} /> } />
             <Route path='/sort-rules' element={ <SortRules  setTitle={setTitle} /> } />
             <Route path='/folder' element={ <Folder setTitle={setTitle} /> } />
