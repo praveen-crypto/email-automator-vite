@@ -1,8 +1,11 @@
-// import React from "react";
+import { useEffect } from "react";
 
-const SortRules = (props) => {
-    props.setTitle("Sort Rules")
-
+const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
+    
+    useEffect(() => {
+        props.setTitle("Sort Rules")
+    }, []);
+    
     return <div><h2> Sort Rules</h2></div>
 }
 

@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 
-
-const Inbox = (props) => {
+const Inbox = (props: { setTitle: (arg0: string) => void; }) => {
     
-    props.setTitle("Inbox")
-
-
+    useEffect(() => {
+        props.setTitle("Inbox")
+    }, []);
+    
     return <div><h2> Inbox</h2></div>
 }
 

@@ -12,14 +12,7 @@ import Inbox from './pages/inbox';
 import Labels from './pages/labels';
 import Folder from './pages/folder';
 
-// import Topbar from './pages/global/Topbar';
-
-// import ContainedButtons from './components/containedButtons';
-// const user = {
-//   name: 'Hedy Lamarr',
-//   imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
-//   imageSize: 90,
-// };
+import Topbar from './pages/global/topbar';
 
 function App() {
   // const [isSidebar, setIsSidebar] = useState(true);
@@ -32,8 +25,7 @@ function App() {
         <Sidebar_ />
 
         <main className='content'>
-          {/* <Topbar title={Title}/> */}
-          {Title}
+          <Topbar title={Title}/>
           
           <Routes>
             <Route path='/' element={ <Dashboard setTitle={setTitle} /> } />

@@ -161,7 +161,7 @@ let Sidebar_ = () => {
           },
         }} >
         
-        <MenuItem icon={<GridViewRounded />}  component={<Link to="/" />}> Dashboard</MenuItem>
+        <MenuItem icon={<i className='far fa-house'></i>}  component={<Link to="/" />}> Dashboard</MenuItem>
         <MenuItem icon={<Mail />} component={<Link to="/inbox" />}> Inbox</MenuItem>
         <MenuItem icon={<Sort />} component={<Link to="/sort-rules" />}> Sort Rules</MenuItem>
         <MenuItem icon={<Folder />} component={<Link to="/folder" />}> Folder</MenuItem>

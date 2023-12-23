@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 
 
-const Dashboard = (props) => {
-    props.setTitle("Dashboard")
+const Dashboard = (props: { setTitle: (arg0: string) => void; }) => {
+    
+    useEffect(() => {
+        props.setTitle("Sort Rules")
+    }, []);
     
     return <div>Dashboard</div>
 }

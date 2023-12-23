@@ -1,10 +1,12 @@
+import { useEffect } from "react";
 
 
-const Labels = (props) => {
+const Labels = (props: { setTitle: (arg0: string) => void; }) => {
     
-    props.setTitle("Labels")
-
-
+    useEffect(() => {
+        props.setTitle("Labels")
+    }, []);
+    
     return <div><h2> Labels</h2></div>
 }
 
