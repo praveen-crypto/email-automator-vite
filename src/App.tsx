@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Sidebar_ from './pages/global/Sidebar';
 
-import Dashboard from './pages/dashboard/index';
+import Dashboard from './pages/dashboard/dashboard';
 
 import SortRules from './pages/SortRules';
 import Inbox from './pages/inbox';
@@ -23,7 +23,7 @@ function App() {
     <>
       <div className='app'>
         <Sidebar_ />
-
+        
         <main className='content'>
           <Topbar title={Title}/>
           

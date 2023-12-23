@@ -162,10 +162,10 @@ let Sidebar_ = () => {
         }} >
         
         <MenuItem icon={<i className='far fa-house'></i>}  component={<Link to="/" />}> Dashboard</MenuItem>
-        <MenuItem icon={<Mail />} component={<Link to="/inbox" />}> Inbox</MenuItem>
-        <MenuItem icon={<Sort />} component={<Link to="/sort-rules" />}> Sort Rules</MenuItem>
-        <MenuItem icon={<Folder />} component={<Link to="/folder" />}> Folder</MenuItem>
-        <MenuItem icon={<Label />} component={<Link to="/labels" />}> Labels</MenuItem>
+        <MenuItem icon={<i className='far fa-envelope'></i>} component={<Link to="/inbox" />}> Inbox</MenuItem>
+        <MenuItem icon={<i className='far fa-bars-sort'></i>} component={<Link to="/sort-rules" />}> Sort Rules</MenuItem>
+        <MenuItem icon={<i className="far fa-folder"></i>} component={<Link to="/folder" />}> Folder</MenuItem>
+        <MenuItem icon={<i className='far fa-tag'></i>} component={<Link to="/labels" />}> Labels</MenuItem>
       </Menu>
     </Sidebar>
   )
