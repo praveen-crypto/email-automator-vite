@@ -379,3 +379,22 @@
     color: #75899C;
     font-weight: 400;
 }
+
+.lightText{
+    color: #75899C;
+    font-weight: 400;
+    font-size: .8rem;
+}
+
+.sorting-rules-section .outerModal{
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+
+    z-index: 1;
+
+}

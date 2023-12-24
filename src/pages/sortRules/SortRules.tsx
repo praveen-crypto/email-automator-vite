@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Switch, Checkbox, MenuItem, Modal, Box, FormControl, Select, InputLabel, InputAdornment, TextField, Button  } from '@mui/material'
+import { Switch, Checkbox, MenuItem, Modal, Box, FormControl, Select, InputLabel, InputAdornment, TextField, Button, IconButton  } from '@mui/material'
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { LocalizationProvider, MobileDatePicker } from "@mui/x-date-pickers";
@@ -8,7 +8,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from "dayjs";
 import {getDataFromStorage, setDataToStorage} from "../../storage";
 
+import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
+
 import './SortRules.css'
+import { getRndInteger } from "../../util";
 
 const RowItem = (props: any) => {
     return (
@@ -79,7 +82,7 @@ function ChildModal(props: any) {
                 // style={{backgroundColor:'#FFFFFF',height:"100%",width:"100%"}}
             >
                 
-                <Box sx={{ ...style, width: '100%', height: '100%'}} className="sorting-rules-section" >
+                <Box sx={{ ...style, width: 400, height: 'auto'}} className="sorting-rules-section" >
                     <h2 id="child-modal-title">Rule Conflict</h2>
                     <p id="child-modal-description">
                         Period for archive should be lesser than period for delete
@@ -87,9 +90,8 @@ function ChildModal(props: any) {
                     <div className="container" style={{ border: "1px solid lightgrey", padding: 10 }}>
                         <div className="form-group">
                             <Checkbox defaultChecked size="small" />
-                            <label htmlFor="" style={{ width: "60%" }}>Archive if not read within</label>
+                            <label htmlFor="" style={{ width: "60%" }} className="lightText" >Archive if not read within</label>
                             <select style={{ width: '40%' }} value={props.archiveDate} onChange={(e)=>props.setArchiveDate(e.target.value)} >
-                
                                 <option value="1">1 month</option>
                                 <option value="2">2 month</option>
                                 <option value="3">3 month</option>
@@ -97,7 +99,7 @@ function ChildModal(props: any) {
                         </div>
                         <div className="form-group">
                             <Checkbox defaultChecked size="small" />
-                            <label htmlFor="" style={{ width: "60%" }}>Delete if not read within</label>
+                            <label htmlFor="" style={{ width: "60%" }} className="lightText" > Delete if not read within</label>
                             <select style={{ width: '40%' }}  value={props.deleteDate} onChange={(e)=>props.setDeleteDate(e.target.value)}>
                                 <option value="1">1 month</option>
                                 <option value="2">2 month</option>
@@ -149,19 +151,16 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
         }
     }, []);
 
-    // Function to update data and store it in localStorage
     const updateData = newData => {
         setDataToStorage('myData', newData);
         setData(newData);
     };
 
-    // Sample function to add an item to the data
     const addItem =(newItem) => {
         const newData = [...storageData, newItem];
         updateData(newData);
     };
 
-    // Sample function to remove an item from the data
     const removeItem = (index) => {
         const newData = [...storageData];
         newData.splice(index, 1);
@@ -175,10 +174,11 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
     const handleOpen = () => {
         setOpen(true)
     }
-
+    
     const handleClose = () => {
         setOpen(false)
         setSlide(0)
+        window.location.reload();
     }
 
     const deleteTag = (e: any) => {
@@ -187,7 +187,7 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
             inputArea.current.placeholder = "You can enter multiple words"
         }
     }
-
+    
     const addTag = (text: string) => {
         let tag_area = tagArea.current;
 
@@ -237,8 +237,8 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
         if(ruleName.length < 2 || tagList.length < 2 ) {
             return
         }
-        else{
-            if( parseInt(archiveDate) > parseInt(deleteDate)  ) {
+        else {
+            if( (parseInt(archiveDate) > parseInt(deleteDate)) && (isArchiveCheckboxActive && isDeleteCheckboxActive)  ) {
                 setOpenModal(true)
             }
             else {
@@ -276,11 +276,14 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
     };
 
     const createRule = () => {
+
         console.log(ruleName, tagList, archiveDate, deleteDate);
         
-        let rule = {'id': String(storageData.length) , 'ruleName': ruleName, 'tagList': tagList, 'triggerNum': 0, 'emailImpacted': 0, 'lastTriggeredOn': '29-12-2023'  }
+        let rule = {'id': String(storageData.length) , 'ruleName': ruleName, 'tagList': tagList, 'triggerNum': getRndInteger(3,20), 'emailImpacted': getRndInteger(1,30), 'lastTriggeredOn': '21-12-2023'  }
         
         addItem(rule);
+        handleClose();
+
     }
 
     return (
@@ -323,6 +326,7 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
                 </FormControl>
             </div>
             
+            {/* Draggable List */}
             { storageData.length > 0 ? 
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="droppable">
@@ -353,113 +357,113 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
                     Create a new rule
                 </Button>
             }
+            
+            <div className={`outerModal ${open ? "" : "hide"}`}>
+                <div className={`modal ${open ? "" : "hide"}`}>
+                    <IconButton onClick={() => handleClose()}><HighlightOffOutlinedIcon/></IconButton>
 
-            {/* Draggable List */}
-            <div className={`modal ${open ? "" : "hide"}`}>
-                <button onClick={() => handleClose()}><i className="far fa-close"></i></button>
-                <div className="modal__inner">
-                    {
-                        slide === 0 ?
-                            <div className="createRuleModal">
-                                <strong>Step 1: Name your rule</strong>
-                                <div className="form-group mb">
-                                    <InputLabel id="rule-name">Rule name</InputLabel>
-                                    <TextField sx={{ width: '100%' }} value={ruleName} onChange={(e) => {setRuleName(e.target.value); } } id="outlined-basic" size="small" label="" placeholder="Enter a name for your rule" variant="outlined" />
-                                </div>
-                                <strong>Step 2: Choose your criteria <small className="light">(*Minimum one field should be entered)</small></strong>
-                                <div className="form-group mb">
-                                    <InputLabel id="subject">Subject contains</InputLabel>
-                                    <div className="input">
-                                        <div className="tag-area" ref={tagArea}></div>
-                                        {/* <input type="text" className="edgeless" placeholder="You can enter multiple words" onKeyUp={checkForSpace} ref={inputArea} /> */}
+                    <div className="modal__inner">
+                        {
+                            slide === 0 ?
+                                <div className="createRuleModal">
+                                    <strong>Step 1: Name your rule</strong>
+                                    <div className="form-group mb">
+                                        <InputLabel id="rule-name">Rule name</InputLabel>
+                                        <TextField sx={{ width: '100%' }} value={ruleName} onChange={(e) => {setRuleName(e.target.value); } } id="outlined-basic" size="small" label="" placeholder="Enter a name for your rule" variant="outlined" />
+                                    </div>
+                                    <strong>Step 2: Choose your criteria <small className="light">(*Minimum one field should be entered)</small></strong>
+                                    <div className="form-group mb">
+                                        <InputLabel id="subject">Subject contains</InputLabel>
+                                        <div className="input">
+                                            <div className="tag-area" ref={tagArea}></div>
+                                            {/* <input type="text" className="edgeless" placeholder="You can enter multiple words" onKeyUp={checkForSpace} ref={inputArea} /> */}
+                                            
+                                            <TextField sx={{ "& fieldset": { border: 'none' }, width: '100%' }} className="edgeless" onKeyUp={checkForSpace} size="small" ref={inputArea} placeholder="You can enter multiple words" variant="outlined" 
+                                            // InputProps={{ disableUnderline: true }} 
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group mb">
+                                        <InputLabel id="subject">Period</InputLabel>
+
+                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                            <MobileDatePicker  defaultValue={dayjs()}  slotProps={{ textField: { size: 'small' } }} /> - 
+                                            <MobileDatePicker defaultValue={dayjs()} slotProps={{ textField: { size: 'small' } }} />
+                                        </LocalizationProvider>
+                                    </div>
+                                    <strong>Step 3: Choose actions to be done <small className="light">(*Minimum one field should be entered)</small></strong>
+                                    <div className="step-3">
+                                        <FormControl  size="small" className="archiveSelector">
+                                            <Checkbox checked={isArchiveCheckboxActive} onClick={() => { setIsArchiveCheckboxActive(!isArchiveCheckboxActive) }} size="small" />
+                                            <span id="archive-label">Archive if not read within</span>
+                                            <Select labelId="archive-label"
+                                                className="ruleMonthSelector"
+                                                // id="demo-select-small"
+                                                value={archiveDate}
+                                                // label="Filter by"
+                                                onChange={(e)=>setArchiveDate(e.target.value)}
+                                                disabled={!isArchiveCheckboxActive}
+                                            >
+                                                <MenuItem value={1}>1 Month</MenuItem>
+                                                <MenuItem value={2}>2 Month</MenuItem>
+                                                <MenuItem value={3}>3 Month</MenuItem>
+                                                <MenuItem value={4}>4 Month</MenuItem>
+                                                <MenuItem value={5}>5 Month</MenuItem>
+                                                <MenuItem value={6}>6 Month</MenuItem>
+                                                <MenuItem value={12}>12 Month</MenuItem>
+                                            </Select>
+                                        </FormControl>
                                         
-                                        <TextField sx={{ "& fieldset": { border: 'none' }, width: '100%' }} className="edgeless" onKeyUp={checkForSpace} size="small" ref={inputArea} placeholder="You can enter multiple words" variant="outlined" 
-                                        // InputProps={{ disableUnderline: true }} 
-                                        />
+                                        <FormControl  size="small" className="deleteSelector">
+                                            <Checkbox checked={isDeleteCheckboxActive} onClick={() => { setIsDeleteCheckboxActive(!isDeleteCheckboxActive) }} size="small" />
+                                            <span id="delete-label">Delete if not read within</span>
+                                            <Select
+                                                labelId="delete-label"
+                                                // id="demo-select-small"
+                                                value={deleteDate}
+                                                className="ruleMonthSelector"
+                                                onChange={(e)=>setDeleteDate(e.target.value)}
+                                                // label="Filter by"
+                                                disabled={!isDeleteCheckboxActive}
+                                            >
+                                                <MenuItem value={1}>1 Month</MenuItem>
+                                                <MenuItem value={2}>2 Month</MenuItem>
+                                                <MenuItem value={3}>3 Month</MenuItem>
+                                                <MenuItem value={4}>4 Month</MenuItem>
+                                                <MenuItem value={5}>5 Month</MenuItem>
+                                                <MenuItem value={6}>6 Month</MenuItem>
+                                                <MenuItem value={12}>12 Month</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </div>
+
+                                    <div className="flex-row">
+                                        <button onClick={checkForErrors}>Preview Rule</button>
                                     </div>
                                 </div>
-
-                                <div className="form-group mb">
-                                    {/* <label htmlFor="">Period</label> */}
-                                    <InputLabel id="subject">Period</InputLabel>
-                                    {/* <input type="text" defaultValue="12 May 2023 - 13 May 2023" /> */}
-
-                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <MobileDatePicker  defaultValue={dayjs()}  slotProps={{ textField: { size: 'small' } }} /> - 
-                                        <MobileDatePicker defaultValue={dayjs()} slotProps={{ textField: { size: 'small' } }} />
-                                    </LocalizationProvider>
-                                </div>
-                                <strong>Step 3: Choose actions to be done</strong>
-                                <div className="step-3">
-                                    <FormControl  size="small" className="archiveSelector">
-                                        <Checkbox checked={isArchiveCheckboxActive} onClick={() => { setIsArchiveCheckboxActive(!isArchiveCheckboxActive) }} size="small" />
-                                        <span id="archive-label">Archive if not read within</span>
-                                        <Select labelId="archive-label"
-                                            className="ruleMonthSelector"
-                                            // id="demo-select-small"
-                                            value={archiveDate}
-                                            // label="Filter by"
-                                            onChange={(e)=>setArchiveDate(e.target.value)}
-                                            disabled={!isArchiveCheckboxActive}
-                                        >
-                                            <MenuItem value={1}>1 Month</MenuItem>
-                                            <MenuItem value={2}>2 Month</MenuItem>
-                                            <MenuItem value={3}>3 Month</MenuItem>
-                                            <MenuItem value={4}>4 Month</MenuItem>
-                                            <MenuItem value={5}>5 Month</MenuItem>
-                                            <MenuItem value={6}>6 Month</MenuItem>
-                                            <MenuItem value={12}>12 Month</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                    
-                                    <FormControl  size="small" className="deleteSelector">
-                                        <Checkbox checked={isDeleteCheckboxActive} onClick={() => { setIsDeleteCheckboxActive(!isDeleteCheckboxActive) }} size="small" />
-                                        <span id="delete-label">Delete if not read within</span>
-                                        <Select
-                                            labelId="delete-label"
-                                            // id="demo-select-small"
-                                            value={deleteDate}
-                                            className="ruleMonthSelector"
-                                            onChange={(e)=>setDeleteDate(e.target.value)}
-                                            // label="Filter by"
-                                            disabled={!isDeleteCheckboxActive}
-                                        >
-                                            <MenuItem value={1}>1 Month</MenuItem>
-                                            <MenuItem value={2}>2 Month</MenuItem>
-                                            <MenuItem value={3}>3 Month</MenuItem>
-                                            <MenuItem value={4}>4 Month</MenuItem>
-                                            <MenuItem value={5}>5 Month</MenuItem>
-                                            <MenuItem value={6}>6 Month</MenuItem>
-                                            <MenuItem value={12}>12 Month</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </div>
-
-                                <div className="flex-row">
-                                    <button onClick={checkForErrors}>Preview Rule</button>
-                                </div>
-                            </div>
-                            :
-                            <>
-                                <div className="flex-row" style={{ justifyContent: 'left' }}>
-                                    <button className="circle-button" onClick={() => setSlide(0)}><i className="far fa-chevron-left"></i></button>
-                                    <strong>Rule preview</strong>
-                                </div>
-                                <div className="container blue-bg">
-                                    <ul>
-                                        <li>Subject contains {tagList} as keywords</li>
-                                        <li>Period to apply rule is 12 May 2023 - 13 May 2023</li>
-                                        <li>Archive if not read within {archiveDate} month</li>
-                                        <li>Delete if not read within {deleteDate} months</li>
-                                        <li>Apply this rule on existing emails</li>
-                                    </ul>
-                                </div>
-                                <div className="flex-row">
-                                    <button className="inverse" onClick={() => setSlide(0)}>Back</button>
-                                    <button onClick={createRule}>Create Rule</button>
-                                </div>
-                            </>
-                    }
+                                :
+                                <>
+                                    <div className="flex-row" style={{ justifyContent: 'left' }}>
+                                        <button className="circle-button" onClick={() => setSlide(0)}><i className="far fa-chevron-left"></i></button>
+                                        <strong>Rule preview</strong>
+                                    </div>
+                                    <div className="container blue-bg">
+                                        <ul>
+                                            <li>Subject contains {tagList} as keywords</li>
+                                            {/* <li>Period to apply rule is 12 May 2023 - 13 May 2023</li> */}
+                                            <li>Archive if not read within {archiveDate} month</li>
+                                            <li>Delete if not read within {deleteDate} months</li>
+                                            <li>Apply this rule on existing emails</li>
+                                        </ul>
+                                    </div>
+                                    <div className="flex-row">
+                                        <button className="inverse" onClick={() => setSlide(0)}>Back</button>
+                                        <button onClick={createRule}>Create Rule</button>
+                                    </div>
+                                </>
+                        }
+                    </div>
                 </div>
             </div>
             
