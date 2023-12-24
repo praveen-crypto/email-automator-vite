@@ -22,7 +22,7 @@ const RowItem = (props: any) => {
                 <div className="content">{props.ruleName}</div>
                 <div className="button-group">
                     <button className="circle-button"><i className="far fa-pencil"></i></button>
-                    <button className="circle-button"><i className="far fa-trash"></i></button>
+                    <button className="circle-button" onClick={() => props.removeItem(props.id) }><i className="far fa-trash"></i></button>
                 </div>
             </div>
             <div className="hidden-component">
@@ -154,6 +154,8 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
     const updateData = newData => {
         setDataToStorage('myData', newData);
         setData(newData);
+
+
     };
 
     const addItem =(newItem) => {
@@ -165,6 +167,7 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
         const newData = [...storageData];
         newData.splice(index, 1);
         updateData(newData);
+        window.location.reload();
     };
 
     useEffect(() => {
@@ -174,7 +177,7 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
     const handleOpen = () => {
         setOpen(true)
     }
-    
+
     const handleClose = () => {
         setOpen(false)
         setSlide(0)
@@ -342,7 +345,7 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
                                     >
                                         {(provided) => (
                                             <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} >
-                                                <RowItem handleOpen={handleOpen} ruleName={item['ruleName']} />
+                                                <RowItem handleOpen={handleOpen} ruleName={item['ruleName']} removeItem={removeItem} id={item['id']} />
                                             </div>
                                         )}
                                     </Draggable>
