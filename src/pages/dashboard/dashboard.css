@@ -1,5 +1,5 @@
 
-.dashboard {
+/* .dashboard {
     width: 98%;
     height: auto;
     
@@ -9,10 +9,9 @@
 
     flex-direction: column;
     
-    /* overflow-x: hidden;
-    overflow-y: scroll; */
-    /* justify-content: space-between; */
-}
+    overflow-y: hidden;
+    
+} */
 
 .labelDetailContainer {
     display: flex;
@@ -31,3 +30,163 @@
 .ruleUsage {
     margin-top: 1%;
 }
+
+
+@media only screen and (min-width: 1900px) {
+    
+    .dashboard {
+        width: 56%;
+        height: auto;
+        
+        padding: 2rem 2rem;
+        
+        display: flex;
+  
+        flex-direction: column;
+        
+        overflow-y: hidden;
+  
+        padding-left: 8rem;
+        padding-right: 8rem;
+        
+        /* justify-content: space-between; */
+    }
+  }
+  
+  @media only screen and (min-width: 1200px) {
+    
+    .dashboard {
+        
+        width: 98%;
+        height: auto;
+        
+        padding-top: 2rem;
+        padding-left: 1rem;
+        
+        display: flex;
+        flex-direction: column;
+        
+
+    }
+
+    .graphDetailContainer{
+        
+    }
+  }
+
+  @media only screen and (min-width: 1360px) {
+    
+    .dashboard {
+        
+        width: 98%;
+        height: auto;
+        
+        padding-top: 2rem;
+        padding-left: 1rem;
+        
+        display: flex;
+        flex-direction: column;
+        
+
+    }
+
+    .graphDetailContainer{
+        
+    }
+  }
+
+  @media only screen and (min-width: 1400px) {
+    
+    .dashboard {
+        
+        width: 98%;
+        height: auto;
+        
+        padding-top: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        
+        display: flex;
+        flex-direction: column;
+        
+        overflow-x: hidden;
+
+    }
+
+    .graphDetailContainer{
+        
+    }
+  }
+
+  @media only screen and (min-width: 1600px) {
+    
+    .dashboard {
+        
+        width: 98%;
+        height: auto;
+        
+        padding-top: 2rem;
+        padding-left: 5rem;
+        padding-right: 5rem;
+        
+        display: flex;
+        flex-direction: column;
+        
+        overflow-x: hidden;
+
+    }
+  }
+
+  @media only screen and (min-width: 1900px) {
+    
+    .dashboard {
+        
+        width: 98%;
+        height: auto;
+        
+        padding-top: 2rem;
+        padding-left: 9rem;
+        padding-right: 9rem;
+        
+        display: flex;
+        flex-direction: column;
+        
+        overflow-x: hidden;
+
+    }
+
+    .labelDetailContainer {            
+        justify-content: space-between;
+    }
+
+    .graphDetailContainer{
+        justify-content: space-between;
+    }
+  }
+
+  @media only screen and (min-width: 2100px) {
+    
+    .dashboard {
+        
+        width: 98%;
+        height: auto;
+        
+        padding-top: 2rem;
+        padding-left: 10rem;
+        padding-right: 10rem;
+        
+        display: flex;
+        flex-direction: column;
+        
+        overflow-x: hidden;
+
+    }
+
+    .labelDetailContainer {            
+        justify-content: space-between;
+    }
+
+    .graphDetailContainer{
+        justify-content: space-between;
+    }
+  }

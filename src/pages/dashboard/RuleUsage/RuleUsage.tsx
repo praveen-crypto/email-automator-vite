@@ -41,8 +41,7 @@ const RuleUsage = (props) => {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
-          pageSizeOptions={[5, 10]}
-          
+          // pageSizeOptions={[50, 100]}
         />
       </div>
     );

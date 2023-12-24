@@ -14,6 +14,24 @@
     font-family: 'Roboto', sans-serif;
 }
 
+@media only screen and (min-width: 1900px) {
+    
+    .labelDetail {
+        width: 290px;
+        height: 190px;
+        padding: 1.4rem;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        border: 1px solid #E9EEF2;
+        border-radius: 15px;
+        
+        font-family: 'Roboto', sans-serif;
+    }
+}
+
 .labelDetail .top {
     display: flex;
     justify-content: space-between;

@@ -2,6 +2,8 @@
 html, body{
   padding: 0;
   margin: 0;
+
+  overflow-x: hidden;
 }
 
 * {
@@ -12,10 +14,14 @@ html, body{
 html,
 body,
 #root,
-.app,
-.content{
+.app{
   height: 100%;
   width: 100%;
+}
+
+.content {
+  height: 100%;
+  width: auto;
 }
 
 .app {
@@ -24,3 +30,5 @@ body,
 }
 
  
+
+
