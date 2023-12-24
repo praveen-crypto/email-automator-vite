@@ -179,14 +179,67 @@
         flex-direction: column;
         
         overflow-x: hidden;
-
     }
 
     .labelDetailContainer {            
-        justify-content: space-between;
+        justify-content: space-around;
     }
 
     .graphDetailContainer{
-        justify-content: space-between;
+        justify-content: space-around;
+    }
+  }
+
+
+  @media only screen and (min-width: 2400px) {
+    
+    .dashboard {
+        
+        width: 98%;
+        height: auto;
+        
+        padding-top: 2rem;
+        padding-left: 28rem;
+        padding-right: 28rem;
+        
+        display: flex;
+        flex-direction: column;
+        
+        overflow-x: hidden;
+    }
+
+    .labelDetailContainer {            
+        justify-content: space-around;
+    }
+
+    .graphDetailContainer{
+        justify-content: space-around;
+    }
+  }
+
+
+  @media only screen and (min-width: 3000px) {
+    
+    .dashboard {
+        
+        width: 98%;
+        height: auto;
+        
+        padding-top: 2rem;
+        padding-left: 45rem;
+        padding-right: 45rem;
+        
+        display: flex;
+        flex-direction: column;
+        
+        overflow-x: hidden;
+    }
+
+    .labelDetailContainer {            
+        justify-content: space-around;
+    }
+
+    .graphDetailContainer{
+        justify-content: space-around;
     }
   }

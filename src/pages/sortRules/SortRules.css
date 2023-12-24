@@ -91,6 +91,10 @@
     gap: var(--gap);
 }
 
+.sorting-rules-section .button-group {
+    margin-left: auto;
+}
+
 .sorting-rules-section .circle-button {
     border: none;
     height: 30px;

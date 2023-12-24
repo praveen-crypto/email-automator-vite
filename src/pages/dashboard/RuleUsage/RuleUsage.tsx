@@ -1,7 +1,7 @@
 
 import {  Button, Stack, Switch } from "@mui/material";
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
-
+import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
 import RuleOutlinedIcon from '@mui/icons-material/RuleOutlined';
@@ -9,7 +9,7 @@ import RuleOutlinedIcon from '@mui/icons-material/RuleOutlined';
 import './RuleUsage.css';
 
 const columns: GridColDef[] = [
-  { field: 'status', headerName: 'Status', width: 150, flex: 0.4, sortable: false, renderCell: (params: { row: any; }) => {
+  { field: 'status', headerName: 'Status'  , renderCell: (params: { row: any; }) => {
       // const onClick = (e) => {
       //   const currentRow = params.row;
       //   return alert(JSON.stringify(currentRow, null, 4));
@@ -21,18 +21,18 @@ const columns: GridColDef[] = [
         </Stack>
       );
     } },
-  { field: 'ruleName', headerName: 'Rule Name', width: 100, flex: 1 },
-  { field: 'triggerNum', headerName: 'Trigger Num', width: 100, flex: 1 },
-  { field: 'emailImpacted', headerName: '% of Email Impacted', width: 100, flex: 1 },
-  { field: 'lastTriggeredOn', headerName: 'Last Triggered ON',  width: 100, flex: 1 },
-  { field: 'tagList', headerName: 'Actions', width: 100, flex: 1, },
+  { field: 'ruleName', headerName: 'Rule Name', flex:1   },
+  { field: 'triggerNum', headerName: 'Trigger Num', flex:1  },
+  { field: 'emailImpacted', headerName: '% of Email Impacted',flex:1   },
+  { field: 'lastTriggeredOn', headerName: 'Last Triggered ON',flex:1    },
+  { field: 'tagList', headerName: 'Actions',sortable: false, flex:1},
 ];
 
 const RuleUsage = (props) => {
 
   function DataTable() {
     return (
-      <div style={{ height: '100%', width: '100%' }}>
+      
         <DataGrid
           rows={props.rows}
           columns={columns}
@@ -43,7 +43,7 @@ const RuleUsage = (props) => {
           }}
           // pageSizeOptions={[50, 100]}
         />
-      </div>
+      
     );
   }
 
@@ -65,7 +65,9 @@ const RuleUsage = (props) => {
         </Button>
       </div>
       <div className="table">
+      <Box sx={{ height: 520, width: '100%' }}>
         <DataTable />
+      </Box>
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Switch, Checkbox, MenuItem, Modal, Box, FormControl, Select, InputLabel, InputAdornment, TextField, Button, IconButton  } from '@mui/material'
+import { Switch, Checkbox, MenuItem, Modal, Box, FormControl, Select, InputLabel, InputAdornment, TextField, Button, IconButton, Stack, Alert, Snackbar  } from '@mui/material'
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { LocalizationProvider, MobileDatePicker } from "@mui/x-date-pickers";
@@ -21,8 +21,8 @@ const RowItem = (props: any) => {
                 <Switch defaultChecked size="small" />
                 <div className="content">{props.ruleName}</div>
                 <div className="button-group">
-                    <button className="circle-button"><i className="far fa-pencil"></i></button>
-                    <button className="circle-button" onClick={() => props.removeItem(props.id) }><i className="far fa-trash"></i></button>
+                    <button className="circle-button"  > <i className="far fa-pencil"></i> </button>
+                    <button className="circle-button" onClick={() => props.removeItem(props.id) } ><i className="far fa-trash"></i></button>
                 </div>
             </div>
             <div className="hidden-component">
@@ -124,8 +124,8 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
     const [slide, setSlide] = useState(0);
 
     const [tagList, setTagList] = useState('');
-    const tagArea = useRef();
-    const inputArea = useRef();
+    const tagArea = useRef<HTMLDivElement>(null!);
+    const inputArea = useRef<HTMLInputElement>(null!);
 
     const [data, setData] = useState([]);
 
@@ -138,6 +138,18 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
     const [ruleName, setRuleName] = useState('');
 
     const [storageData, setStorageData] = useState([]);
+
+    const [showAlert, setShowAlert] = useState(false);
+
+    const [alertMsg, setAlertMsg] = useState('');
+
+    useEffect(() => {
+        inputArea.current.focus(); //no error
+    }, []);
+
+    useEffect(() => {
+        tagArea.current.focus(); //no error
+    }, []);
 
     // Function to fetch data from storage on component mount
     useEffect(() => {
@@ -192,7 +204,7 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
     }
     
     const addTag = (text: string) => {
-        let tag_area = tagArea.current;
+        let tag_area = tagArea.current ;
 
         let tag = document.createElement('div');
         tag.classList.add('tag')
@@ -235,9 +247,36 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
         e.target.placeholder = ""
     }
 
+    function AlertMessage() {
+        return (
+            <Snackbar sx={{ height: "10%" }}
+            anchorOrigin={{
+               vertical: "top",
+               horizontal: "center"
+            }} open={showAlert} autoHideDuration={3000} onClose={() => {setShowAlert(false)} } >
+                <Alert severity="error" >{alertMsg}</Alert>
+            </Snackbar>
+        );
+    }
+
     const checkForErrors = () => {
-        console.log({ruleName, tagList});
-        if(ruleName.length < 2 || tagList.length < 2 ) {
+        // console.log({ruleName, tagList});
+
+        if(ruleName.length < 2 ) {
+            setAlertMsg("Enter rule name");
+            setShowAlert(true);
+            return
+        }
+        else if(tagList.length < 2){
+            setAlertMsg("Enter tag name");
+            setShowAlert(true);
+            return
+        }
+        else if(isArchiveCheckboxActive === false &&  isDeleteCheckboxActive === false){
+            setAlertMsg("Enable Archive or delete checkbox");
+            setShowAlert(true);
+
+            //setShowAlert(false);
             return
         }
         else {
@@ -249,6 +288,7 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
             }
         }
 
+        
     }
 
     const reorder = (list : any, startIndex:any, endIndex:any) => {
@@ -273,7 +313,7 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
             data,
             result.source.index,
             result.destination.index
-        );
+        ) as never;
         
         setData(newData);
     };
@@ -291,7 +331,7 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
 
     return (
         <section className="sorting-rules-section">
-            
+            <AlertMessage/>
             {/* Header */}
             <div className="flex-row">
 
@@ -299,7 +339,7 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
                     <input type="text" name="search" placeholder="Search..." />
                     <i className="far fa-search"></i>
                 </div> */}
-
+                
                 <TextField
                     className="search-box"
                     size="small"
@@ -455,8 +495,8 @@ const SortRules = (props: { setTitle: (arg0: string) => void; }) => {
                                         <ul>
                                             <li>Subject contains {tagList} as keywords</li>
                                             {/* <li>Period to apply rule is 12 May 2023 - 13 May 2023</li> */}
-                                            <li>Archive if not read within {archiveDate} month</li>
-                                            <li>Delete if not read within {deleteDate} months</li>
+                                            {isArchiveCheckboxActive ? <li>Archive if not read within {archiveDate} month</li> : '' }
+                                            {isDeleteCheckboxActive ? <li>Delete if not read within {deleteDate} months</li> : '' }
                                             <li>Apply this rule on existing emails</li>
                                         </ul>
                                     </div>
