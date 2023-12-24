@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 
-import Sidebar_ from './pages/global/Sidebar';
+import Sidebar_ from './pages/global/sidebar/Sidebar';
 
 import Dashboard from './pages/dashboard/dashboard';
 
-import SortRules from './pages/SortRules';
+import SortRules from './pages/sortRules/SortRules';
 import Inbox from './pages/inbox';
 import Labels from './pages/labels';
 import Folder from './pages/folder';

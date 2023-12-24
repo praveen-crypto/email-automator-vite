@@ -13,7 +13,7 @@ import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from 'rea
 function Topbar(props: { title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color='transparent'>
+      <AppBar sx={{ borderBottom: '1px solid black', borderColor:'grey.300' }} position="static" color='transparent' elevation={0}>
         <Toolbar>
           {/* <IconButton
             size="large"

@@ -1,11 +1,33 @@
 
-
 .dashboard {
+    width: 98%;
+    height: auto;
+    
     padding: 2rem 2rem;
+    
+    display: flex;
+
+    flex-direction: column;
+    
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
+    /* justify-content: space-between; */
 }
 
 .labelDetailContainer {
     display: flex;
+
+    justify-content: space-between;
+}
+
+.graphDetailContainer{
+    display: flex;
     
     justify-content: space-between;
+    
+    margin-top: 1%;
+}
+
+.ruleUsage {
+    margin-top: 1%;
 }

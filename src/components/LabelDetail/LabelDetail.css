@@ -1,49 +1,91 @@
 
 .labelDetail {
-    width: 220px;
-    height: 140px;
+    width: 260px;
+    height: 190px;
     padding: 1.4rem;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
+    
     border: 1px solid #E9EEF2;
     border-radius: 15px;
     
     font-family: 'Roboto', sans-serif;
 }
 
-.top {
+.labelDetail .top {
     display: flex;
     justify-content: space-between;
 }
 
-.top .labelIcon {
-    font-size: 20px;
+.labelDetail .top .labelIcon {
+    /* width: 40px;
+    height: 40px; */
+    font-size: medium;
     padding: .5rem;
     color: #3248F3;
     background-color: #F3F4FE;
 
     border: 1px solid #F3F4FE;
     border-radius: 10px;
+    
+    display: flex;
+    justify-content: center;
+    align-self: center;
 }
 
-.top .moreButtonIcon {
+.labelDetail .top .moreButtonIcon {
+    font-size: large;
     color: #576D82;
 }
 
-.bottom {
+.labelDetail .middle {
     font-family: 'Roboto', sans-serif;
 }
 
-.bottom .title {
-    font-size: 400;
+.labelDetail .middle .title {
+    font-weight: 400;
     color: #75899C;
 }
 
-.bottom .value {
-    font-size: 30px;
+.labelDetail .middle .value {
+    font-size: 1.4rem;
     font-weight: 600;
     color: #2C414D;
 }
+
+
+.labelDetail .bottom{
+    margin-top: 2px;
+    margin-left: 2px;
+}
+
+.labelDetail .bottom .percentageValueGreen {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    color: #26C896;
+    
+    font-size: .8rem;
+
+}
+
+.labelDetail .bottom .percentageValueRed {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    color: #FC481A;
+    
+    font-size: .8rem;
+
+}
+
+.labelDetail .bottom .title {
+    
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: .8rem;
+    color: #75899C;
+
+    padding-left: 5px;
+}
+

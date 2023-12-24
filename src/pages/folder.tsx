@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Table from "./test";
 
 const Folder = (props: { setTitle: (arg0: string) => void; }) => {
 
@@ -7,7 +8,14 @@ const Folder = (props: { setTitle: (arg0: string) => void; }) => {
         props.setTitle("Folder")
     }, []);
 
-    return <div><h2> Folder</h2></div>
+    return (
+    
+        <Table />
+    )
 }
 
 export default Folder;
+
+
+
+

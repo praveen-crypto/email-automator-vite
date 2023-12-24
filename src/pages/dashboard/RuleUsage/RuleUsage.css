@@ -1,0 +1,62 @@
+
+.ruleUsage {
+    width: 100%;
+    height: auto;
+    padding: 1.4rem 1.4rem 1.4rem 1.4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    border: 1px solid #E9EEF2;
+    border-radius: 15px;
+    
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header .left{
+    display: flex;
+
+    color: #242a30;
+    
+}
+
+.header .left .ruleIcon {
+    font-size: 18px;
+    padding: .5rem;
+    color: #3248F3;
+    background-color: #F3F4FE;
+
+    border: 1px solid #F3F4FE;
+    border-radius: 10px;
+
+    margin-right: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.header .left .ruleTitle {
+    margin-top:auto;
+    margin-bottom: auto;
+
+    font-weight: 500;
+}
+
+.header .viewMoreButton {
+    
+    color: #3248F3;
+}
+
+.table {
+    margin-top: 18px;
+}
+
+

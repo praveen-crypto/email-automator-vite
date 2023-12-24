@@ -1,0 +1,154 @@
+.graphDetail {
+    width: 550px;
+    height: 380px;
+    padding: 1.4rem 1.4rem 0 1.4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border: 1px solid #E9EEF2;
+    border-radius: 15px;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header .left {
+    display: flex;
+
+}
+
+.header .left .graphIcon {
+    font-size: 20px;
+    padding: .5rem;
+    color: #3248F3;
+    background-color: #F3F4FE;
+
+    border: 1px solid #F3F4FE;
+    border-radius: 10px;
+
+    margin-right: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.header .left .graphDetailTitle {
+    margin-top: auto;
+    margin-bottom: auto;
+
+    font-weight: 500;
+    color: #242a30;
+}
+
+.header .viewMoreButton {
+    color: #3248F3 !important;
+}
+
+.graph {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    margin-top: 5%;
+
+    display: flex;
+
+}
+
+.graph .left {
+    width: 50% !important;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.graph .right {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+}
+
+.graph .container {
+    width: 100%;
+    height: auto;
+    
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.graph .category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.graph .category .value{
+    font-size: .8rem;
+    font-weight: 500;
+    color:#576D82;
+}
+
+/* 
+.category:not(:last-child) {
+    border-bottom: 1px solid #e1e4e8;
+} 
+*/
+
+.graph .category-name {
+    display: flex;
+    align-items: center;
+
+    font-size: .8rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.graph .category-name::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.graph .newsletter::before {
+    background-color: #3248f3;
+}
+
+.graph .spam::before {
+    background-color: #78bbfb;
+}
+
+.graph .other::before {
+    background-color: #bbdafc;
+}
+
+.graph .uncategorized::before {
+    background-color: #f3f4fe;
+}

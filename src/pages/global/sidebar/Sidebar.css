@@ -1,0 +1,31 @@
+.sidebar .header {
+
+    height: 64px;
+
+    border: 1px solid #E9EEF2;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar .header .logo {
+    width: 28px;
+    height: 28px;
+    padding-right:5px;
+}
+
+.sidebar .title {
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+
+    text-align: center;
+
+
+    margin: 0;
+}
+
+.sidebar .menuList {
+    margin-top: 4%;
+}
